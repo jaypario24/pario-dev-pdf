@@ -1,0 +1,61 @@
+{
+  "name": "playground",
+  "private": true,
+  "version": "0.0.0",
+  "engines": {
+    "node": "18.x"
+  },
+  "scripts": {
+    "build:common": "npm run -w packages/common build",
+    "build:converter": "npm run -w packages/converter build",
+    "build:schemas": "npm run -w packages/schemas build",
+    "build:generator": "npm run -w packages/generator build",
+    "build:ui": "npm run -w packages/ui build",
+    "build:manipulator": "npm run -w packages/manipulator build",
+    "dev": "npm run generate-templates-list && vite",
+    "build": "npm run generate-templates-list && vite build && npm run copy-vercel-config",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist -b playground",
+    "copy-vercel-config": "node -e \"require('fs').copyFileSync('vercel.json', 'dist/vercel.json')\"",
+    "generate-templates-list": "node scripts/generate-templates-list-json.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.2.0",
+    "@pdfme/common": "file:../packages/common/dist",
+    "@pdfme/converter": "file:../packages/converter/dist", 
+    "@pdfme/generator": "file:../packages/generator/dist",
+    "@pdfme/schemas": "file:../packages/schemas/dist",
+    "@pdfme/ui": "file:../packages/ui/dist",
+    "@pdfme/manipulator": "file:../packages/manipulator/dist",
+    "esbuild": "^0.19.10",
+    "express": "^4.18.2",
+    "lucide-react": "^0.475.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.18.0",
+    "react-toastify": "^11.0.3",
+    "signature_pad": "^4.1.6",
+    "vite": "^4.4.5"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.0.3",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "gh-pages": "^6.0.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "canvas": "^2.11.2"
+  }
+}
